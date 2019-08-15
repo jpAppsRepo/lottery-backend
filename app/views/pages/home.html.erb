@@ -1,0 +1,35 @@
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-6 col-md-offset-2">
+    <p>
+      <%= form_for Archive.new, html: { multipart: false } do |f| %>
+        <%= f.label :attachment, "Файл оруулах" %>
+        <%= f.file_field :attachment %>
+        <%= f.submit "Оруулах", class: "btn btn-primary" %>
+      <% end %>
+    </p>
+
+    </div>  
+    <div class="col-md-8 col-md-offset-2">
+      <% if current_user.role_id == 1 %>
+        <%=
+          link_to 'Файл татаж авах',
+          items_path(format: :xlsx)
+        %>
+        <table id="ajax-table" class="display">
+        </table>
+      <% else %>
+        <table id="user-table" class="display">
+        </table>
+      <% end %>
+      
+
+    </div>
+  </div>
+</div>
+
+
+

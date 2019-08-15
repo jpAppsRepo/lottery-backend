@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @lottery.phone_number %>
+</p>
+
+<p>
+  <strong>Lottery number:</strong>
+  <%= @lottery.lottery_number %>
+</p>
+
+<%= link_to 'Edit', edit_lottery_path(@lottery) %> |
+<%= link_to 'Back', lotteries_path %>

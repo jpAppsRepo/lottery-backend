@@ -1,0 +1,17 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  project_heading = style.add_style(b: true, sz: 14)
+  heading = style.add_style(b: true)
+
+  wb.add_worksheet(name: "Items") do |sheet|
+    # Create the header row
+    sheet.add_row ["Худалдан авсан огноо", "Утасны дугаар", "Овог", "Нэр", "Худалдан авсан бүтээгдэхүүн", "Үнийн дүн", "Утасны IMEI код"], style: heading
+    # Create the database reference row
+    sheet.add_row ["purchase_date", "phone_number", "surname", "name", "product_name", "price_info", "phone_imei"], style: heading
+    # Create entries for each item
+    @items.each do |item|
+      sheet.add_row [item.purchase_date.strftime('%Y/%m/%d'), item.phone_number, item.surname, item.name, item.product_name, item.price_info, item.phone_imei]
+    end
+  end
+end

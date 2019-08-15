@@ -1,0 +1,16 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "jquery.dataTables";
+@import "datatables/buttons.dataTables.min";
+@import "datatables/select.dataTables.min";
+@import "datatables/editor.dataTables.min";
+@import "pages";
+
+// App sections
+@import "application/example";
+
+
+body { padding-top: 100px; }
+footer { margin-top: 100px; }
+table, td, th { vertical-align: middle; border: none; }
+th { border-bottom: 1px solid #DDD; }

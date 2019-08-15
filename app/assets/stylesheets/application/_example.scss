@@ -1,0 +1,55 @@
+.app-example-overview {
+  .box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  }
+}
+
+.app-example {
+  min-height: 25rem;
+}
+
+// makes comparison easier
+.needs-validation.was-validated {
+  > .alert-danger { display: block !important; }
+}
+
+.loginscreen.middle-box {
+  width: 280px;
+}
+
+.login-board {
+  background-color: #f3f3f4;
+  margin: -55px;
+  padding: 25px;
+  display: block;
+  border-radius: 23px;
+}
+
+.middle-box {
+  max-width: 400px;
+  z-index: 100;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.middle-box h1 {
+  font-size: 140px;
+  text-align: center;
+}
+
+.logo-name {
+  color: #000000;
+  font-size: 60px;
+  font-weight: 600;
+  letter-spacing: -5px;
+  margin-bottom: 30;
+  text-align: center;
+}
+
+.btn-login-custom {
+  margin-bottom: 15px;
+}
+
+.gray-bg, .bg-muted {
+  background-color: #f3f3f4;
+}

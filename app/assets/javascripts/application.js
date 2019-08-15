@@ -1,0 +1,10 @@
+//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require jquery
+//= require bootstrap-sprockets
+//= require jquery.dataTables.min
+//= require datatables/dataTables.buttons.min
+//= require datatables/dataTables.select.min
+//= require datatables/dataTables.editor.min
+//= require_tree .

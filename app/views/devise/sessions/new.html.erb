@@ -1,0 +1,27 @@
+<div class="middle-box loginscreen ">
+  <div class="login-board">
+    <div>
+      <h3 class="logo-name">Lottery </br> System</h3>
+    </div>
+
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <%= f.input :email, 
+                  :label => 'Хэрэглэгчийн нэр',
+                  required: false,
+                  autofocus: true,
+                  input_html: { autocomplete: "user_id" } %>
+    <%= f.input :password,
+                  :label => 'Нууц үг',
+                  required: false,
+                  input_html: { autocomplete: "current-password" } %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Нэвтрэх", class: "btn btn-sm btn-primary btn-block btn-login-custom" %>
+    </div>
+
+    <%= render "auth_flash" %>
+    <% end %>
+
+  </div>
+</div>
