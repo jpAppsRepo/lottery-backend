@@ -7,12 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # add doctors data
-User.create(email: "user1@gmail.com", password: "12345678", role_id: 0)
-User.create(email: "user2@gmail.com", password: "12345678", role_id: 0)
-User.create(email: "user3@gmail.com", password: "12345678", role_id: 0)
-User.create(email: "user1@gmail.com", password: "12345678", role_id: 0)
-User.create(email: "user1@gmail.com", password: "12345678", role_id: 0)
-User.create(email: "admin1@gmail.com", password: "12345678", role_id: 1)
+User.create(email: "user1@gmail.com", password: "user1-pass", role_id: 0)
+User.create(email: "user2@gmail.com", password: "user2-pass", role_id: 0)
+User.create(email: "user3@gmail.com", password: "user3-pass", role_id: 0)
+User.create(email: "user4@gmail.com", password: "user4-pass", role_id: 0)
+User.create(email: "user5@gmail.com", password: "user5-pass", role_id: 0)
+User.create(email: "user6@gmail.com", password: "user6-pass", role_id: 0)
+User.create(email: "user7@gmail.com", password: "user7-pass", role_id: 0)
+User.create(email: "user8@gmail.com", password: "user8-pass", role_id: 0)
+User.create(email: "admin1@gmail.com", password: "admin-password", role_id: 1)
 
 # 10.times do
 #     purchase_date = Date.parse('2019-08-10')
