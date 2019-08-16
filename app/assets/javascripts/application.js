@@ -4,7 +4,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery.dataTables.min
-//= require datatables/dataTables.buttons.min
-//= require datatables/dataTables.select.min
-//= require datatables/dataTables.editor.min
+//= require dataTables/dataTables.buttons.min
+//= require dataTables/dataTables.select.min
+//= require dataTables/dataTables.editor.min
 //= require_tree .
