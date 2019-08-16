@@ -17,9 +17,9 @@ class PagesController < ApplicationController
       for lottery in 1..lottery_count
         lottery = Lottery.new do |l|
           l.phone_number = item.phone_number
-          random_pick = ([*1..99999] - l_number_arr).sample
+          random_pick = ([*1..999999] - l_number_arr).sample
           l_number_arr.push(random_pick)              
-          formatted_str = random_pick.to_s.rjust(5, "0")
+          formatted_str = random_pick.to_s.rjust(6, "0")
           l.lottery_number = formatted_str
         end
         lottery.save!
@@ -43,15 +43,15 @@ class PagesController < ApplicationController
     permitted = params[:data][item_id].permit(:purchase_date, :phone_number, :surname, :name, :product_name, :price_info, :phone_imei) 
     item_update = item.update_attributes!(permitted)
     if old_value != item_update.price_info
-      difference = item_update.price_info - old_value 
+      difference = item_update.price_info/100000 - old_value/100000 
       if difference > 0
-        lottery_count = difference/100000
+        lottery_count = difference
         string_arr = Lottery.pluck(:lottery_number)
         l_number_arr = string_arr.map(&:to_i)
         for lottery in 1..lottery_count
           lottery = Lottery.new do |l|
             l.phone_number = item.phone_number
-            random_pick = ([*1..99999] - l_number_arr).sample
+            random_pick = ([*1..999999] - l_number_arr).sample
             l_number_arr.push(random_pick)              
             formatted_str = random_pick.to_s.rjust(5, "0")
             l.lottery_number = formatted_str

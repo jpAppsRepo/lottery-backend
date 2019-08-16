@@ -32,9 +32,9 @@ class ItemsImport
         for lottery in 1..lottery_count
           lottery = Lottery.new do |l|
             l.phone_number = row["phone_number"]
-            random_pick = ([*1..99999] - l_number_arr).sample
+            random_pick = ([*1..999999] - l_number_arr).sample
             l_number_arr.push(random_pick)              
-            random_pick.to_s.rjust(5, "0")
+            random_pick.to_s.rjust(6, "0")
             l.lottery_number = random_pick
           end
           lottery.save!

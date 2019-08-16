@@ -6,7 +6,7 @@ wb.styles do |style|
 
   wb.add_worksheet(name: "Items") do |sheet|
     # Create the header row
-    sheet.add_row ["Худалдан авсан огноо", "Байршил" "Утасны дугаар", "Овог", "Нэр", "Худалдан авсан бүтээгдэхүүн", "Үнийн дүн", "Утасны IMEI код"], style: heading
+    sheet.add_row ["Худалдан авсан огноо", "Байршил", "Утасны дугаар", "Овог", "Нэр", "Худалдан авсан бүтээгдэхүүн", "Үнийн дүн", "Утасны IMEI код"], style: heading
     # Create the database reference row
     sheet.add_row ["purchase_date", "location", "phone_number", "surname", "name", "product_name", "price_info", "phone_imei"], style: heading
     # Create entries for each item
