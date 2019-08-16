@@ -52,6 +52,9 @@ $(document).ready(function () {
                 label: "Худалдан авсан огноо:",
                 name: "purchase_date"
             }, {
+                label: "Байршил:",
+                name: "location"
+            }, {
                 label: "Утасны дугаар:",
                 name: "phone_number"
             }, {
@@ -94,6 +97,7 @@ $(document).ready(function () {
                 orderable: false
             },
             {title: 'Худалдан авсан огноо', data: 'purchase_date', class: 'purchase_date-column'},
+            {title: 'Байршил', data: 'location', class: 'location-column'},
             {title: 'Утасны дугаар', data: 'phone_number', class: 'phone_number-column'},
             {title: 'Овог', data: 'surname', class: 'surname-column'},
             {title: 'Нэр', data: 'name', class: 'name-column'},
@@ -120,6 +124,7 @@ $(document).ready(function () {
         order: [['2', 'desc']],
         columns: [
             {title: 'Худалдан авсан огноо', data: 'purchase_date', class: 'purchase_date-column'},
+            {title: 'Байршил', data: 'location', class: 'location-column'},
             {title: 'Утасны дугаар', data: 'phone_number', class: 'phone_number-column'},
             {title: 'Овог', data: 'surname', class: 'surname-column'},
             {title: 'Нэр', data: 'name', class: 'name-column'},

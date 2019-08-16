@@ -2,6 +2,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
   def change
     create_table :items do |t|
       t.date :purchase_date
+      t.integer :location
       t.string :phone_number
       t.string :surname
       t.string :name
