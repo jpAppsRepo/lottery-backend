@@ -81,6 +81,7 @@ Rails.application.configure do
 
   config.assets.digest = true
 
+  config.serve_static_assets = true
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
