@@ -81,7 +81,6 @@ Rails.application.configure do
 
   config.assets.digest = true
 
-  config.assets.css_compressor = :yui
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
