@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-server '165.22.1.167', port: 7171, roles: [:web, :app, :db], primary: true
+server '165.22.1.167', port: 22, roles: [:web, :app, :db], primary: true
 set :application, "lottery-backend"
 set :repo_url, "git@github.com:jpAppsRepo/lottery-backend.git"
 set :user, "tushig"
