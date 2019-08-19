@@ -80,6 +80,19 @@ namespace :deploy do
   after  :finishing,    :restart
 end
 
+namespace :deploy do
+    desc 'db_seed'
+    task :db_seed do
+        on roles(:db) do |host|
+            with rails_env: fetch(:rails_env) do
+                within current_path do
+                execute :bundle, :exec, :rake, 'db:seed'
+                end
+            end
+        end
+    end
+end
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
