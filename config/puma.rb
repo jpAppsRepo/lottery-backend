@@ -4,11 +4,11 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+threads_count = ENV.fetch("RAILS_MAX_THREADS") { 2 }
 threads threads_count, threads_count
 
 # Set up socket location
-bind "unix://#{shared_dir}/tmp/sockets/puma.sock"
+bind "unix:///home/tushig/apps/lottery-backend/shared/tmp/sockets/puma.sock"
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
