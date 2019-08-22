@@ -41,6 +41,7 @@ class PagesController < ApplicationController
     item = Item.find_by_id(item_id)
     old_value = item.price_info
     permitted = params[:data][item_id].permit(:purchase_date, :location, :phone_number, :surname, :name, :product_name, :price_info, :phone_imei) 
+    permitted.price_info = permitted.price_info.to_i
     item_update = item.update_attributes!(permitted)
     if old_value != item_update.price_info
       difference = item_update.price_info/100000 - old_value/100000 
