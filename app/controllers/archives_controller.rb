@@ -9,7 +9,6 @@ class ArchivesController < ApplicationController
     @archive = Archive.new(archive_params)
       
     if @archive.save
-      puts @archive
       # @items_import = ItemsImport.new(params[:items_import])
       @items_import = ItemsImport.new(import_params)
       if @items_import.save
