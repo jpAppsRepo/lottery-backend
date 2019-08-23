@@ -25,7 +25,6 @@ class ItemsImport
     (3..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       item = Item.find_by(phone_number: row["phone_number"], price_info: row["price_info"]) || Item.new
-      puts row.inspect
       if item.price_info != nil && row["price_info"].to_i >= 100000
         lottery_count = row["price_info"].to_i/100000
         string_arr = Lottery.pluck(:lottery_number)
