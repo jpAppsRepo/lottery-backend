@@ -24,20 +24,22 @@ class ItemsImport
     header = spreadsheet.row(2)
     (3..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      item = Item.find_by(phone_number: row["phone_number"], price_info: row["price_info"]) || Item.new
-      if item.price_info != nil && row["price_info"].to_i >= 100000
-        lottery_count = row["price_info"].to_i/100000
-        string_arr = Lottery.pluck(:lottery_number)
-        l_number_arr = string_arr.map(&:to_i)
-        for lottery in 1..lottery_count
-          lottery = Lottery.new do |l|
-            l.phone_number = row["phone_number"]
-            random_pick = ([*1..999999] - l_number_arr).sample
-            l_number_arr.push(random_pick)              
-            random_pick.to_s.rjust(6, "0")
-            l.lottery_number = random_pick
+      item = Item.find_by(purchase_date: row["purchase_date"], location: row["location"], phone_number: row["phone_number"], surname: row["surname"], name: row["name"], price_info: row["price_info"]) || Item.new
+      if item[:price_info].nil?
+        if row["price_info"] != nil && row["price_info"].to_i >= 100000
+          lottery_count = row["price_info"].to_i/100000
+          string_arr = Lottery.pluck(:lottery_number)
+          l_number_arr = string_arr.map(&:to_i)
+          for lottery in 1..lottery_count
+            lottery = Lottery.new do |l|
+              l.phone_number = row["phone_number"]
+              random_pick = ([*1..999999] - l_number_arr).sample
+              l_number_arr.push(random_pick)              
+              random_pick.to_s.rjust(6, "0")
+              l.lottery_number = random_pick
+            end
+            lottery.save!
           end
-          lottery.save!
         end
       end
       item.attributes = row.to_hash
