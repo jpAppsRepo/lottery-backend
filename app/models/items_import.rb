@@ -35,8 +35,8 @@ class ItemsImport
               l.phone_number = row["phone_number"]
               random_pick = ([*1..999999] - l_number_arr).sample
               l_number_arr.push(random_pick)              
-              random_pick.to_s.rjust(6, "0")
-              l.lottery_number = random_pick
+              formatted_str = random_pick.to_s.rjust(6, "0")
+              l.lottery_number = formatted_str
             end
             lottery.save!
           end

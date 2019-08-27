@@ -19,6 +19,13 @@
           link_to 'Файл татаж авах',
           items_path(format: :xlsx)
         %>
+
+        <%=
+          link_to 'Сугалаа засах', 
+          fix_lotteries_path(),
+          class: "lottery-correction-btn",
+          :data => {:confirm => 'Сугалааны дугааруудыг дахин шинээр үүсгэх үү?'}
+        %>
         <table id="ajax-table" class="display">
         </table>
       <% else %>

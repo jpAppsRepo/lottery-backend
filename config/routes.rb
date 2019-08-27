@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   delete 'dataset', to: 'pages#remove_dataset'
 
   get 'pages', to: 'pages#home', :as => 'pages'
+  get 'fix_lotteries', to: 'lotteries#fix', :as => 'fix_lotteries'
 end
