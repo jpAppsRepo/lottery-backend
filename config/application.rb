@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module DatatablesExample
   class Application < Rails::Application
+    # custom config 
+    config.force_ssl = true
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.middleware.insert_before 0, Rack::Cors do

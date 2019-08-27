@@ -51,6 +51,8 @@ gem 'axlsx_rails'
 gem 'carrierwave'
 # Form generator
 gem 'simple_form', '~> 4.1'
+# SSL config gem
+gem 'thin'
 
 
 group :development, :test do
