@@ -30,4 +30,5 @@
 .ruby-gemset
 .ruby-version
 
-.Gemfile.lock
+/config/database.yml
+Gemfile.lock
