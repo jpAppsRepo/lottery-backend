@@ -37,10 +37,11 @@ class PagesController < ApplicationController
   end
 
   def put_dataset
-    item_id = params[:data].keys()[0]
+    puts params[:id]
+    item_id = params[:id]
     item = Item.find_by_id(item_id)
     old_value = item.price_info
-    permitted = params[:data][item_id].permit(:purchase_date, :location, :phone_number, :surname, :name, :product_name, :price_info, :phone_imei) 
+    permitted = params.permit(:purchase_date, :location, :phone_number, :surname, :name, :product_name, :price_info, :phone_imei) 
     item_update = item.update_attributes!(permitted)
     updated_value = permitted[:price_info].to_i
     if old_value != updated_value
@@ -70,7 +71,7 @@ class PagesController < ApplicationController
   end
   
   def remove_dataset
-    item_id = params[:data].keys()[0]
+    item_id = params[:Id]
     item = Item.destroy(item_id)
     if item.destroyed?
       render json: {}, status: 200

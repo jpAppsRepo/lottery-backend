@@ -7,6 +7,11 @@
   padding: 10px;
 }
 
+tfoot input {
+  width: 100%;
+  padding: 3px;
+  box-sizing: border-box;
+}
 
 .dataTables_wrapper {
   #admin-table {

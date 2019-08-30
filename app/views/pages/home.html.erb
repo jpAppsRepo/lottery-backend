@@ -1,8 +1,58 @@
 
+<div id="itemModal" class="modal fade">
+	<div class="modal-dialog">
+		<form method="post" id="itemForm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h4 class="modal-title"><i class="fa fa-plus"></i> Edit</h4>
+				</div>
+				<div class="modal-body">
+          <div class="form-group">
+						<label for="purchase_date" class="control-label">Худалдан авсан огноо</label>
+            <input type="text" class="form-control" id="purchase_date" name="purchase_date" placeholder="" required>			
+					</div>
+          <div class="form-group">
+						<label for="location" class="control-label">Байршил</label>
+            <input type="text" class="form-control" id="location" name="location" placeholder="" required>			
+					</div>		
+          <div class="form-group">
+						<label for="phone_number" class="control-label">Утасны дугаар</label>							
+						<input type="number" class="form-control" id="phone_number" name="phone_number" placeholder="">							
+					</div>
+          <div class="form-group">
+						<label for="surname" class="control-label">Овог</label>							
+						<input type="text" class="form-control"  id="surname" name="surname" placeholder="" required>							
+					</div>
+					<div class="form-group">
+						<label for="name" class="control-label">Нэр</label>
+						<input type="text" class="form-control" id="name" name="name" placeholder="" required>			
+					</div>
+          <div class="form-group">
+						<label for="product_name" class="control-label">Худалдан авсан бүтээгдэхүүн</label>
+            <input type="text" class="form-control" id="product_name" name="product_name" placeholder="" required>			
+					</div>
+          <div class="form-group">
+						<label for="price_info" class="control-label">Үнийн дүн</label>							
+						<input type="number" class="form-control" id="price_info" name="price_info" placeholder="">							
+					</div>
+          <div class="form-group">
+						<label for="phone_imei" class="control-label">Утасны IMEI код</label>
+            <input type="text" class="form-control" id="phone_imei" name="phone_imei" placeholder="" required>			
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="action" id="action" value="" />
+          <input type="hidden" name="id" id="id" value="" />
+					<input type="submit" name="save" id="save" class="btn btn-info" value="Save" />
+					<button type="button" class="btn btn-default" data-dismiss="modal">Хаах</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
 <div class="container">
-
   <div class="row">
-
     <div class="col-md-6">
     <p>
       <%= form_for Archive.new, html: { multipart: false } do |f| %>
@@ -19,7 +69,6 @@
           link_to 'Файл татаж авах',
           items_path(format: :xlsx)
         %>
-
         <%=
           link_to 'Сугалаа засах', 
           fix_lotteries_path(),
@@ -32,8 +81,6 @@
         <table id="user-table" class="display" cellspacing="0" width="100%">
         </table>
       <% end %>
-      
-
     </div>
   </div>
 </div>
