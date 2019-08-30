@@ -31,4 +31,5 @@
 .ruby-version
 
 /config/database.yml
+/public/uploaded
 Gemfile.lock

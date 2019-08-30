@@ -1,100 +1,17 @@
-
-var editor; // use a global for the submit and return data rendering in the examples
 $(document).ready(function () {
-    editor = new $.fn.dataTable.Editor( {
-        table: "#ajax-table",
-        ajax: {
-            create: {
-                type: 'POST',
-                contentType: 'application/json',
-                url: '/dataset',
-                data: function (d) {
-                    var newdata;
-                    $.each(d.data, function (key, value) {
-                        newdata = JSON.stringify(value);
-                    });
-                    return newdata;
-                 },
-                success: function (result) {
-                    $('#ajax-table').DataTable().ajax.reload();
-                },
-                error: function (errormessage) {
-                    alert(JSON.stringify(errormessage));
-                }
-            },
-            edit: {
-                type: 'PUT',
-                url: '/dataset',
-                success: function (result) {
-                    console.warn("success callback result=" + JSON.stringify(result));
-                    // $('#ajax-table').click();
-                    // toastr.success("Object updated");
-                    $('#ajax-table').DataTable().ajax.reload();
-                },
-                error: function (xhr, error, thrown) {
-                    // alert(JSON.stringify(errormessage));
-                    console.warn("error callback xhr=" + JSON.stringify(xhr));
-                }
-            },
-            remove: {
-                type: 'DELETE',
-                url: '/dataset',
-                success: function (result) {
-                    // table.ajax.reload();
-                },
-                error: function (errormessage) {
-                    alert(JSON.stringify(errormessage));
-                }
-            }
+    var admin_table = $('#admin-table').DataTable({
+        dom: 'Bfrtip',
+        select: true,
+        oLanguage: {
+            "sSearch": "Хайх:"
         },
-        idSrc:  'id',
-        fields: [ {
-                label: "Худалдан авсан огноо:",
-                name: "purchase_date"
-            }, {
-                label: "Байршил:",
-                name: "location"
-            }, {
-                label: "Утасны дугаар:",
-                name: "phone_number"
-            }, {
-                label: "Овог:",
-                name: "surname"
-            }, {
-                label: "Нэр:",
-                name: "name"
-            }, {
-                label: "Худалдан авсан бүтээгдэхүүн:",
-                name: "product_name"
-            }, {
-                label: "Үнийн дүн:",
-                name: "price_info",
-            }, {
-                label: "Утасны IMEI код:",
-                name: "phone_imei"
-            }
-        ]
-    } );
-
-    // Activate an inline edit on click of a table cell
-    // $('#ajax-table').on( 'click', 'tbody td:not(:first-child)', function (e) {
-    //     editor.inline( this );
-    // } );
-    
-    // $('#static-table').DataTable();
-    $('#ajax-table').DataTable({
-        dom: "Bfrtip",
         ajax: {
             url: '/dataset',
             dataSrc: 'items',
         },
-        order: [['2', 'desc']],
         columns: [
-            {
-                data: null,
-                defaultContent: '',
-                className: 'select-checkbox',
-                orderable: false
+            {   "data": null,
+                 defaultContent: '' 
             },
             {title: 'Худалдан авсан огноо', data: 'purchase_date', class: 'purchase_date-column'},
             {title: 'Байршил', data: 'location', class: 'location-column'},
@@ -105,21 +22,68 @@ $(document).ready(function () {
             {title: 'Үнийн дүн', data: 'price_info', class: 'price_info-column'},
             {title: 'Утасны IMEI код', data: 'phone_imei', class: 'phone_imei-column'}
         ],
+        columnDefs: [ {
+            orderable: false,
+            className: 'select-checkbox',
+            targets:   0
+        } ],
         select: {
             style:    'os',
             selector: 'td:first-child'
         },
         buttons: [
-            { extend: "create", text: "Нэмэх", editor: editor },
-            { extend: "edit", text: "Засах",   editor: editor },
-            { extend: "remove", text: "Устгах", editor: editor }
-        ]
+            {
+                className: 'add',
+                text: 'Нэмэх',
+                action: function ( e, dt, node, config ) {
+                    alert(
+                        'Row data: '+
+                        JSON.stringify( dt.row( { selected: true } ).data() )
+                    );
+                },
+                enabled: true
+            },
+            {
+                className: 'edit',
+                text: 'Засах',
+                action: function ( e, dt, node, config ) {
+                    alert( 'Rows: '+ dt.rows( { selected: true } ).count() );
+                },
+                enabled: false
+            },
+            {
+                className: 'delete',
+                text: 'Устгах',
+                action: function ( e, dt, node, config ) {
+                    alert( 'Rows: '+ dt.rows( { selected: true } ).count() );
+                },
+                enabled: false
+            }
+        ],
+        order: [['2', 'desc']],
     });
+
+    admin_table.on( 'select deselect', function () {
+        var selectedRows = admin_table.rows( '.selected' ).count();
+        console.log(selectedRows);
+        admin_table.button( 1 ).enable( selectedRows === 1 );
+        admin_table.button( 2 ).enable( selectedRows > 0 );
+    } );
+    // var edit_button = admin_table.buttons( ['edit'] );
+    // var delete_button = admin_table.buttons( ['delete'] );
+    var rows = admin_table.rows( '.selected' );
+ 
+    // $('#button').click( function () {
+    //     alert( table.rows('.selected').data().length +' row(s) selected' );
+    // } );
 
     $('#user-table').DataTable({
         ajax: {
             url: '/dataset',
             dataSrc: 'items',
+        },
+        language:{
+            Search: "Хайх"
         },
         order: [['2', 'desc']],
         columns: [
@@ -133,4 +97,38 @@ $(document).ready(function () {
             {title: 'Утасны IMEI код', data: 'phone_imei', class: 'phone_imei-column'}
         ]
     });
+});
+
+
+
+/* CRUD */
+var counter = 1;
+ 
+$('#addItem').on( 'click', function () {
+    t.row.add( [
+        counter +'.1',
+        counter +'.2',
+        counter +'.3',
+        counter +'.4',
+        counter +'.5'
+    ] ).draw( false );
+
+    counter++;
+} );
+
+// Automatically add a first row of data
+$('#addItem').click();
+
+$('#deleteItem').click(function () {
+    $('tr.selected').each(function () {
+        var $row = $(this);
+        var store = $row.find('td:first').text();
+        $.post('/dataset', {store_id: store}, function (response) {
+            // if ( /* validation of response*/ ) {
+                // table.row($row).remove();
+            // }
+        });
+    });
+
+    table.draw();
 });

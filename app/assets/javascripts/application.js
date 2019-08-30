@@ -6,5 +6,4 @@
 //= require jquery.dataTables.min
 //= require dataTables/dataTables.buttons.min
 //= require dataTables/dataTables.select.min
-//= require dataTables/dataTables.editor.min
 //= require_tree .
