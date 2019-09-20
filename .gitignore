@@ -26,11 +26,12 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/credentials.yml.enc
+/config/database.yml
 
 .idea/
 .ruby-gemset
 .ruby-version
+.env
 
-/config/database.yml
 /public/uploaded
 Gemfile.lock
