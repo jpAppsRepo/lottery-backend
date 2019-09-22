@@ -1,5 +1,5 @@
 # set path to the application
-app_dir git File.expand_path("../..", __FILE__)
+app_dir = "/home/tushig/apps/lottery-backend"
 shared_dir = "#{app_dir}/shared"
 working_directory app_dir
 
