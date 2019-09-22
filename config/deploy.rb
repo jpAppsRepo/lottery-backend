@@ -21,8 +21,8 @@ set :deploy_via,    :remote_cache
 # append :linked_files, 'config/master.key'
 # set :linked_files, fetch(:linked_files, []).push('.env')
 # append :linked_files, "config/database.yml", "config/secrets.yml"
-append :linked_files, "config/master.key"
-append :linked_files, ".env"
+# append :linked_files, "config/master.key"
+# append :linked_files, ".env"
 
 # Don't change these unless you know what you're doing
 set :pty,             true
@@ -89,7 +89,7 @@ namespace :deploy do
   end
 
   before :starting,     :check_revision
-  after  :finishing,    :compile_assets
+  # after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
