@@ -1,19 +1,34 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-server '165.22.1.167', port: 22, roles: [:web, :app, :db], primary: true
+# server '165.22.1.167', roles: [:web, :app, :db], primary: true
+# Application Settings
 set :application, "lottery-backend"
-set :repo_url, "git@github.com:jpAppsRepo/lottery-backend.git"
 set :user, "tushig"
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads", "vendor/bundle"
-append :linked_files, "config/database.yml", "config/secrets.yml"
+set :deploy_to,     "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
+set :rails_env,     "production"
+set :use_sudo,      false
+set :keep_releases, 5
+
+# Git Settings 
+set :scm,           :git
+set :branch,        "master"
+set :repo_url,      "git@github.com:jpAppsRepo/lottery-backend.git"
+set :deploy_via,    :remote_cache
+
+# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads", "vendor/bundle"
+# set :linked_files, fetch(:linked_files, []).push('config/database.yml')
+# append :linked_files, 'config/credentials.yml.enc'
+# append :linked_files, 'config/master.key'
+# set :linked_files, fetch(:linked_files, []).push('.env')
+# append :linked_files, "config/database.yml", "config/secrets.yml"
+append :linked_files, "config/master.key"
 
 # Don't change these unless you know what you're doing
 set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
@@ -43,7 +58,6 @@ namespace :puma do
       execute "mkdir #{shared_path}/tmp/pids -p"
     end
   end
-
   before :start, :make_dirs
 end
 
@@ -80,18 +94,18 @@ namespace :deploy do
   after  :finishing,    :restart
 end
 
-namespace :deploy do
-    desc 'db_seed'
-    task :db_seed do
-        on roles(:db) do |host|
-            with rails_env: fetch(:rails_env) do
-                within current_path do
-                execute :bundle, :exec, :rake, 'db:seed'
-                end
-            end
-        end
-    end
-end
+# namespace :deploy do
+#     desc 'db_seed'
+#     task :db_seed do
+#         on roles(:db) do |host|
+#             with rails_env: fetch(:rails_env) do
+#                 within current_path do
+#                 execute :bundle, :exec, :rake, 'db:seed'
+#                 end
+#             end
+#         end
+#     end
+# end
 
 
 # Default branch is :master
