@@ -74,5 +74,5 @@ production:
   database: lottery-db
   username: <%= ENV['DATABASE_PROD_USER'] %>
   password: <%= ENV['DATABASE_PROD_PASSWORD'] %>
-  socket: /var/mysql/mysqld.sock
+  socket: /run/mysqld/mysqld.sock
   advisory_locks: false
