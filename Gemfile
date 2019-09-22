@@ -53,6 +53,8 @@ gem 'carrierwave'
 gem 'simple_form', '~> 4.1'
 # SSL config gem
 gem 'thin'
+# Setting Environments 
+gem 'dotenv-rails'
 
 
 group :development, :test do
@@ -74,8 +76,8 @@ group :development do
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
-  # gem 'capistrano3-puma',   require: false
-  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano3-puma',   require: false
+  # gem 'capistrano-passenger', '~> 0.2.0'
 end
 
 group :test do
