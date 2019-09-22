@@ -1,6 +1,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
+require "bundler/capistrano"
+
 # server '165.22.1.167', roles: [:web, :app, :db], primary: true
 # Application Settings
 set :application, "lottery-backend"
