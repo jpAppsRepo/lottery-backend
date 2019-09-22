@@ -17,8 +17,10 @@ install_plugin Capistrano::Puma
 # require "capistrano/scm/svn"
 # install_plugin Capistrano::SCM::Svn
 # or
-# require "capistrano/scm/git"
-# install_plugin Capistrano::SCM::Git
+require "capistrano/scm/git"
+install_plugin Capistrano::SCM::Git
+
+set :rvm_ruby_version, '2.5.1'
 
 # Include tasks from other gems included in your Gemfile
 #
