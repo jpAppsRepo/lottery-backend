@@ -15,13 +15,13 @@ set :branch,        "master"
 set :repo_url,      "git@github.com:jpAppsRepo/lottery-backend.git"
 set :deploy_via,    :remote_cache
 
-# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads", "vendor/bundle"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads", "vendor/bundle"
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 # append :linked_files, 'config/credentials.yml.enc'
 # append :linked_files, 'config/master.key'
 # set :linked_files, fetch(:linked_files, []).push('.env')
 # append :linked_files, "config/database.yml", "config/secrets.yml"
-# append :linked_files, "config/master.key"
+append :linked_files, "config/master.key"
 # append :linked_files, ".env"
 
 # Don't change these unless you know what you're doing
