@@ -1,10 +1,6 @@
 default: &default
   adapter: mysql2
-  encoding: utf8mb4
-  username: root
-  password: 
   host: localhost
-  socket: /run/mysqld/mysqld.sock
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -12,11 +8,10 @@ default: &default
 development:
   <<: *default
   encoding: utf8
-  database: <%= ENV['DATABASE_DEV_NAME'] %>
-  pool: 5
+  database: lottery-db
   username: <%= ENV['DATABASE_DEV_USER'] %>
   password: <%= ENV['DATABASE_DEV_PASSWORD'] %>
-  host: <%= ENV['DATABASE_DEV_HOST'] %>
+  socket: /tmp/mysql.sock
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -51,6 +46,9 @@ development:
 test:
   <<: *default
   database: lottery-db
+  username: <%= ENV['DATABASE_TEST_USER'] %>
+  password: <%= ENV['DATABASE_TEST_PASSWORD'] %>
+  socket: /tmp/mysql.sock
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -76,4 +74,5 @@ production:
   database: lottery-db
   username: <%= ENV['DATABASE_PROD_USER'] %>
   password: <%= ENV['DATABASE_PROD_PASSWORD'] %>
+  socket: /var/mysql/mysqld.sock
   advisory_locks: false
