@@ -41,9 +41,15 @@ class PagesController < ApplicationController
     item_id = params[:id]
     item = Item.find_by_id(item_id)
     old_value = item.price_info
+    old_phone = item.phone_number
     permitted = params.permit(:purchase_date, :location, :phone_number, :surname, :name, :product_name, :price_info, :phone_imei) 
     item_update = item.update_attributes!(permitted)
     updated_value = permitted[:price_info].to_i
+    updated_phone = permitted[:phone_number]
+    if old_phone != updated_phone
+      lottery_record = Lottery.where(phone_number: old_phone)
+      lottery_update = lottery_record.update_all(:phone_number => updated_phone)
+    end
     if old_value != updated_value
       difference = updated_value/100000 - old_value/100000 
       if difference > 0
@@ -52,7 +58,7 @@ class PagesController < ApplicationController
         l_number_arr = string_arr.map(&:to_i)
         for lottery in 1..lottery_count
           lottery = Lottery.new do |l|
-            l.phone_number = item.phone_number
+            l.phone_number = updated_phone
             random_pick = ([*1..999999] - l_number_arr).sample
             l_number_arr.push(random_pick)              
             formatted_str = random_pick.to_s.rjust(5, "0")

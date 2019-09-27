@@ -62,7 +62,7 @@ class LotteriesController < ApplicationController
   end
 
   def fix
-    Lottery.destroy_all
+    # Lottery.destroy_all
     @item_list = Item.where("price_info > 99999")
     @item_list.each do |item|
       lottery_count = item.price_info/100000
