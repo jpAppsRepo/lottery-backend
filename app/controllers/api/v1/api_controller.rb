@@ -10,7 +10,7 @@ class Api::V1::ApiController < ApplicationController
 
     def candidates_by_lottery_number
         qParam = candidate_params['lottery_number']
-        @lotteries = Lottery.where('lottery_number LIKE ?', "%#{qParam}")
+        @lotteries = Lottery.where('lottery_number LIKE ?', "#{qParam}%")
         render json: @lotteries
     end 
     
