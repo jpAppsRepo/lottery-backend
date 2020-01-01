@@ -50,7 +50,7 @@ gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
 gem 'carrierwave'
 # Form generator
-gem 'simple_form', '~> 4.1'
+gem 'simple_form', '~> 5.0'
 # SSL config gem
 gem 'thin'
 # Setting Environments 
