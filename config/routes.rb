@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'lotteries/:phone_number', to: 'api#lotteries_by_phone_number', :as => 'lotteries_by_phone_number'
+      get 'candidates/:lottery_number', to: 'api#candidates_by_lottery_number', :as => 'candidates_by_lottery_number'
     end
   end
 

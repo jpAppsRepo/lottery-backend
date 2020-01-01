@@ -8,8 +8,19 @@ class Api::V1::ApiController < ApplicationController
         render json: @lotteries
     end
 
+    def candidates_by_lottery_number
+        qParam = candidate_params['lottery_number']
+        @lotteries = Lottery.where('lottery_number LIKE ?', "%#{qParam}")
+        render json: @lotteries
+    end 
+    
+
     private
     def api_params
         params.permit(:phone_number)
+    end
+    
+    def candidate_params
+        params.permit(:lottery_number)
     end
 end
