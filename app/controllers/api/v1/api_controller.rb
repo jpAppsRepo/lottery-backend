@@ -13,7 +13,16 @@ class Api::V1::ApiController < ApplicationController
         @lotteries = Lottery.where('lottery_number LIKE ?', "#{qParam}%")
         render json: @lotteries
     end 
+
+    def items_all
+        @items = Item.all
+        render json: @items
+    end 
     
+    def lotteries_all
+        @lotteries = Lottery.all
+        render json: @lotteries
+    end 
 
     private
     def api_params
